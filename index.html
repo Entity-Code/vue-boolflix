@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css/style.css">
+      <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+      <title>MattFlix</title>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js ">
+      </script>
+   </head>
+   <body>
+
+
+      <!-- istanza vue -->
+      <div id="app">
+
+         <!-- nav -->
+         <header>
+            <!-- left logo -->
+            <div id="nav-left">
+               <h1 id="logo">BOOLFLIX</h1>
+               <ul id="ul-nav">
+                  <li>Home</li>
+                  <li>Serie TV</li>
+                  <li>Film</li>
+                  <li>Originali</li>
+                  <li>Aggiunti di recente</li>
+                  <li>La mia lista</li>
+               </ul>
+            </div>
+
+
+
+            <!-- right search-bar FILTRAGGIO-->
+            <input id="search-bar" @input="filtraggio()" v-model="filtra">
+
+            <!-- button -->
+            <button id=btn> CERCA </button>
+
+         </header>
+         <!-- nav -->
+
+
+         <!-- movies/tv container -->
+         <main id="container-boxes">
+            <!-- boxes --> <!-- v-for=stampo tutti i film/v-if=mostrameli solo se filtered == true-->
+            <div class="box" v-for="movie in movies" v-if="movie.filtered===true">
+               <!-- titolo (oggetto del filtraggio) -->
+               <div><h1>Title: </h1> {{ movie.title }}</div>
+               <!-- titolo originale -->
+               <div><h1>Original title: </h1> {{ movie.original_title }}</div>
+               <!-- linguaggio originale -->
+               <div><h1>Language: </h1> {{ movie.original_language }}</div>
+               <!-- voto -->
+               <div><h1>Vote: </h1>{{ movie.vote_average }}</div>
+            </div>
+
+
+         </main>
+         <!-- movies/tv container -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      <!-- link js -->
+      <script type="text/javascript" src="js/script.js"></script>
+   </body>
+</html>

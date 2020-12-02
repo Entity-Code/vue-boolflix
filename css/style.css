@@ -1,0 +1,105 @@
+/* regole generali */
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Lato';
+   outline: none;
+   list-style-type: none;
+   color: white;
+}
+body{
+   background-color: #434343;
+}
+/* nav HEADER */
+   header{
+      height: 50px;
+      background-color: black;
+      display: flex;
+      flex-flow: nowrap row;
+      justify-content: space-between;
+   }
+      #nav-left{
+         display: flex;
+      }
+         /* left logo */
+         #logo{
+            align-self: center;
+            color: red;
+            font-size: 25px;
+            margin-left: 50px;
+         }
+         #ul-nav{
+            display: flex;
+            flex-flow: row nowrap;
+            align-self: center;
+            margin: 0 20px;
+         }
+         #ul-nav > li {
+            font-size: 13px;
+            color: lightgray;
+            margin: 0 5px;
+            cursor: pointer;
+            align-self: flex-start;
+         }
+      /* right search-bar */
+      #search-bar{
+         color: black;
+         align-self: center;
+         height: 50%;
+         margin-right: 50px;
+         padding: 10px;
+      }
+/* nav HEADER*/
+
+
+/* movies/tv container */
+#container-boxes{
+   display: flex;
+   flex-flow: wrap row;
+   justify-content: space-between;
+   min-width: 85%;
+   max-width: 500px;
+   margin: 75px;
+   margin-top: 30px;
+}
+   .box{
+      height: 350px;
+      width: 250px;
+      background-color: black;
+      border: 1px solid #fff;
+      margin: 20px 10px;
+      padding: 30px 10px;
+      font-size: 15px;
+   }
+   .box > div{padding: 5px 0;}
+   .box > div > h1{
+      font-size: 18px;
+      display: inline-block;
+      padding-right: 5px;
+   }
+/* movies/tv container */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* # */
