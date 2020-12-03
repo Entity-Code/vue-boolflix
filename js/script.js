@@ -12,7 +12,7 @@ var app = new Vue({
    data: {
 
       movies: [],
-      filtra: ""
+      filtra: "",
    },
    mounted: function() {
 
@@ -22,11 +22,22 @@ var app = new Vue({
          // centralizzazione array results nel mio "movies"
          this.movies = risposta.data.results;
 
-         // traversamento per aggiungere ad ogni oggetto film la proprietà filtered pre-impostata a true per il filtraggio
+         // traversamento per aggiungere ad ogni oggetto film la proprietà filtered pre-impostata a true per il filtraggio e per l'arrotondamento dei voti
          for (var i = 0; i < this.movies.length; i++) {
+            // variabile di stato per il filtro
             this.movies[i].filtered = true;
+
+            // arrotondamento voto
+            let votoDiviso = (this.movies[i].vote_average / 2);
+            let votoArrotondato = (Math.ceil(votoDiviso));
+            // console.log(votoArrotondato);
+
+            // modifica dei voti arrotondati
+            this.movies[i].vote_average = votoArrotondato;
          }
-         // console.log(this.movies);
+
+
+
       });
 
    },
@@ -50,7 +61,7 @@ var app = new Vue({
                movie.filtered = false;
             }
         });
-      }
+     }
 
 
 
