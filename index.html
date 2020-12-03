@@ -49,16 +49,20 @@
                <!-- titolo originale -->
                <div><h1>Original title: </h1> {{ movie.original_title }}</div>
                <!-- linguaggio originale -->
-               <div><h1>Language: </h1> {{ movie.original_language }}</div>
+               <div><h1>Language: </h1> {{ <img src="https://www.countryflags.io/no/shiny/64.png"> }}</div>
                <!-- voto -->
-               <div><h1>Vote: </h1>{{ movie.vote_average }} </div>
+               <div>
+                  <h1>Vote: </h1>
+                  <i class="fas fa-star" v-for="star in movie.stars"></i>
+               </div>
+
             </div>
 
 
          </main>
          <!-- movies/tv container -->
 
-
+         <!-- <img src="https://www.countryflags.io/be/shiny/64.png"> -->
 
 
 

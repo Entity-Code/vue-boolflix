@@ -13,6 +13,7 @@ var app = new Vue({
 
       movies: [],
       filtra: "",
+      icon: '<i class="fas fa-star"></i>'
    },
    mounted: function() {
 
@@ -26,15 +27,25 @@ var app = new Vue({
          for (var i = 0; i < this.movies.length; i++) {
             // variabile di stato per il filtro
             this.movies[i].filtered = true;
+            //aggiungo la proprietà stars settata a 0
 
             // arrotondamento voto
             let votoDiviso = (this.movies[i].vote_average / 2);
-            let votoArrotondato = (Math.ceil(votoDiviso));
+            var votoArrotondato = (Math.ceil(votoDiviso));
             // console.log(votoArrotondato);
 
             // modifica dei voti arrotondati
-            this.movies[i].vote_average = votoArrotondato;
+            this.movies[i].stars = votoArrotondato;
+            // console.log(this.movies[i]);
+            console.log(this.movies[i].stars);
+
+            
+
+
+
          }
+
+
 
 
 
