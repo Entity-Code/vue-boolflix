@@ -12,23 +12,29 @@ var app = new Vue({
    data: {
 
       movies: [],
-      tv: [],
-      filtra: "",
+      research: ""
    },
    mounted: function() {
-
-      // CHIAMATA MOVIES
-      axios.get("https://api.themoviedb.org/3/search/movie?api_key=632b3a13e5a3fa9d76198ee6af3fe116&query=data")
+      axios.get("https://api.themoviedb.org/3/search/movie?api_key=632b3a13e5a3fa9d76198ee6af3fe116&query=Pink Floyd")
       .then(risposta => {
+
+
+      });
+
+   },
+
+   methods: {
+
+
+     search: function () {
+      // CHIAMATA MOVIES
+      axios.get("https://api.themoviedb.org/3/search/movie?api_key=632b3a13e5a3fa9d76198ee6af3fe116&query=" + this.research)
+       .then(risposta => {
 
          // centralizzazione array results nel mio "movies"
          this.movies = risposta.data.results;
 
-         // traversamento per aggiungere ad ogni oggetto film la proprietà filtered pre-impostata a true per il filtraggio e per l'arrotondamento dei voti
          for (var i = 0; i < this.movies.length; i++) {
-            // variabile di stato per il filtro
-            this.movies[i].filtered = true;
-            //aggiungo la proprietà stars settata a 0
 
             // arrotondamento voto
             let votoDiviso = (this.movies[i].vote_average / 2);
@@ -42,64 +48,35 @@ var app = new Vue({
 
             this.movies[i].upperLanguage = upperLanguage;
 
-         }
+          }
       });
 
-
-
-      // CHIAMATA TV
-      axios.get("https://api.themoviedb.org/3/search/tv?api_key=632b3a13e5a3fa9d76198ee6af3fe116&language=it_IT&query=scrubs")
-      .then(risposta => {
+      // CHIAMATA SERIE TV
+      axios.get("https://api.themoviedb.org/3/search/tv?api_key=632b3a13e5a3fa9d76198ee6af3fe116&language=it_IT&query=" + this.research)
+       .then(risposta => {
 
          // centralizzazione array results nel mio "movies"
-         this.tv = risposta.data.results;
-         console.log(this.tv);
+         this.movies = risposta.data.results;
 
-
-         // traversamento per aggiungere ad ogni oggetto film la proprietà filtered pre-impostata a true per il filtraggio e per l'arrotondamento dei voti
-         for (var i = 0; i < this.tv.length; i++) {
-
-            // variabile di stato per il filtro
-            this.tv[i].filtered = true;
+         for (var i = 0; i < this.movies.length; i++) {
 
             // arrotondamento voto
-            let votoDiviso = (this.tv[i].vote_average / 2);
+            let votoDiviso = (this.movies[i].vote_average / 2);
             var votoArrotondato = (Math.ceil(votoDiviso));
 
-         }
+            // modifica dei voti arrotondati
+            this.movies[i].stars = votoArrotondato;
 
+            let lowerLanguage = this.movies[i].original_language;
+            let upperLanguage = lowerLanguage.toUpperCase(lowerLanguage);
 
+            this.movies[i].upperLanguage = upperLanguage;
 
+          }
 
 
       });
-   },
-
-   methods: {
-
-      // filtraggio searchbar
-      filtraggio: function(){
-        // ciclo la lista dei film
-         this.movies.forEach((movie, i) => {
-            let string = this.filtra;
-            let title = movie.title;
-            // converto in minuscolo
-            string = string.toLowerCase();
-            title = title.toLowerCase();
-
-            // se la stringa è contenuta nel nome inserito
-            if (title.includes(string)) {
-               movie.filtered = true;
-            } else { // altrimenti
-               movie.filtered = false;
-            }
-        });
      }
-
-
-
-
-
 
    }
 });

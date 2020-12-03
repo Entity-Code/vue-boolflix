@@ -33,7 +33,7 @@
 
 
             <!-- right search-bar FILTRAGGIO-->
-            <input id="search-bar" @input="filtraggio()" v-model="filtra">
+            <input id="search-bar" v-on:keydown.13="search" v-model="research">
 
 
          </header>
@@ -43,11 +43,27 @@
          <!-- movies/tv container -->
          <main id="container-boxes">
             <!-- boxes --> <!-- v-for=stampo tutti i film/v-if=mostrameli solo se filtered == true-->
-            <div class="box" v-for="movie in movies" v-if="movie.filtered==true">
+            <div class="box" v-for="movie in movies">
                <!-- titolo (oggetto del filtraggio) -->
-               <div><h1>Title: </h1> {{ movie.title }}</div>
+               <div>
+                  <h1>Title: </h1>
+                  {{ movie.title }}
+                  {{ movie.name }}
+               </div>
                <!-- titolo originale -->
-               <div><h1>Original title: </h1> {{ movie.original_title }}</div>
+               <div>
+                  <h1>Original title:</h1>
+                  {{ movie.original_title }}
+                  {{ movie.original_name }}
+
+               </div>
+               <!-- overview -->
+               <div>
+                  <h1>Overview: </h1>
+                  <p>{{ movie.overview }}</p>
+               </div>
+
+
 
 
                <!-- linguaggio originale -->
