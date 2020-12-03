@@ -12,10 +12,12 @@ var app = new Vue({
    data: {
 
       movies: [],
+      tv: [],
       filtra: "",
    },
    mounted: function() {
 
+      // CHIAMATA MOVIES
       axios.get("https://api.themoviedb.org/3/search/movie?api_key=632b3a13e5a3fa9d76198ee6af3fe116&query=data")
       .then(risposta => {
 
@@ -31,21 +33,38 @@ var app = new Vue({
             // arrotondamento voto
             let votoDiviso = (this.movies[i].vote_average / 2);
             var votoArrotondato = (Math.ceil(votoDiviso));
-            // console.log(votoArrotondato);
 
             // modifica dei voti arrotondati
             this.movies[i].stars = votoArrotondato;
-            // console.log(this.movies[i]);
-            // console.log(this.movies[i].stars);
-
-
 
             let lowerLanguage = this.movies[i].original_language;
             let upperLanguage = lowerLanguage.toUpperCase(lowerLanguage);
 
             this.movies[i].upperLanguage = upperLanguage;
-            console.log(upperLanguage);
 
+         }
+      });
+
+
+
+      // CHIAMATA TV
+      axios.get("https://api.themoviedb.org/3/search/tv?api_key=632b3a13e5a3fa9d76198ee6af3fe116&language=it_IT&query=scrubs")
+      .then(risposta => {
+
+         // centralizzazione array results nel mio "movies"
+         this.tv = risposta.data.results;
+         console.log(this.tv);
+
+
+         // traversamento per aggiungere ad ogni oggetto film la proprietà filtered pre-impostata a true per il filtraggio e per l'arrotondamento dei voti
+         for (var i = 0; i < this.tv.length; i++) {
+
+            // variabile di stato per il filtro
+            this.tv[i].filtered = true;
+
+            // arrotondamento voto
+            let votoDiviso = (this.tv[i].vote_average / 2);
+            var votoArrotondato = (Math.ceil(votoDiviso));
 
          }
 
@@ -54,7 +73,6 @@ var app = new Vue({
 
 
       });
-
    },
 
    methods: {
