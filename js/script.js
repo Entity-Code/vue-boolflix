@@ -13,7 +13,6 @@ var app = new Vue({
 
       movies: [],
       filtra: "",
-      icon: '<i class="fas fa-star"></i>'
    },
    mounted: function() {
 
@@ -37,10 +36,15 @@ var app = new Vue({
             // modifica dei voti arrotondati
             this.movies[i].stars = votoArrotondato;
             // console.log(this.movies[i]);
-            console.log(this.movies[i].stars);
+            // console.log(this.movies[i].stars);
 
-            
 
+
+            let lowerLanguage = this.movies[i].original_language;
+            let upperLanguage = lowerLanguage.toUpperCase(lowerLanguage);
+
+            this.movies[i].upperLanguage = upperLanguage;
+            console.log(upperLanguage);
 
 
          }

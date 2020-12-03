@@ -48,8 +48,18 @@
                <div><h1>Title: </h1> {{ movie.title }}</div>
                <!-- titolo originale -->
                <div><h1>Original title: </h1> {{ movie.original_title }}</div>
+
+
                <!-- linguaggio originale -->
-               <div><h1>Language: </h1> {{ <img src="https://www.countryflags.io/no/shiny/64.png"> }}</div>
+               <div>
+                  <h1>Language: </h1>
+                     <!-- creo dinamicamente l'src per le flags -->
+                     <img class="flags" :src="'img/'+movie.original_language+'.svg'">
+                     <span>({{ movie.original_language }}-{{movie.upperLanguage}})</span>
+                </div>
+
+
+
                <!-- voto -->
                <div>
                   <h1>Vote: </h1>

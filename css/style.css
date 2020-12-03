@@ -80,7 +80,19 @@ body{
    }
 /* movies/tv container */
 
+/* stars */
 i{color: yellow;}
+/* flags */
+.flags{
+   width: 30px;
+   position: relative;
+   top: 10px;
+}
+.flags + span{
+   border-radius: 5px;
+   padding: 5px;
+}
+
 
 
 
