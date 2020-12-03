@@ -57,24 +57,24 @@ body{
 #container-boxes{
    display: flex;
    flex-flow: wrap row;
-   justify-content: space-between;
-   min-width: 85%;
-   max-width: 500px;
-   margin: 75px;
-   margin-top: 30px;
+   justify-content: center;
+   margin: 75px 0;
+   padding-left: 0px;
+
 }
    .box{
       height: 500px;
       width: 350px;
       background-color: black;
       border: 1px solid #fff;
-      margin: 20px 10px;
+      margin: 20px 20px;
       padding: 30px 10px;
       font-size: 15px;
+      position: relative;
    }
-   .box > div{padding: 5px 0;}
-   .box > div > h1{
-      font-size: 18px;
+   .box .info{padding: 5px 0;}
+   .box .info h1{
+      font-size: 16px;
       display: inline-block;
       padding-right: 5px;
    }
@@ -94,7 +94,22 @@ i{color: yellow;}
 }
 /* overview */
 p{
-   font-size: 10px;
+   font-size: 12px;
+}
+
+/* background-box */
+.background-box{
+   transition: all 0.7s;
+   width: 100%;
+   height: 100%;
+   background-position: center;
+   position: absolute;
+   top: 0;
+   left: 0;
+}
+.background-box:hover{
+   opacity: 0;
+   transform: rotateY(180deg);
 }
 
 

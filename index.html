@@ -11,7 +11,6 @@
    </head>
    <body>
 
-
       <!-- istanza vue -->
       <div id="app">
 
@@ -30,82 +29,61 @@
                </ul>
             </div>
 
-
-
             <!-- right search-bar FILTRAGGIO-->
             <input id="search-bar" v-on:keydown.13="search" v-model="research">
-
 
          </header>
          <!-- nav -->
 
-
          <!-- movies/tv container -->
          <main id="container-boxes">
-            <!-- boxes --> <!-- v-for=stampo tutti i film/v-if=mostrameli solo se filtered == true-->
+
             <div class="box" v-for="movie in movies">
-               <!-- titolo (oggetto del filtraggio) -->
-               <div>
-                  <h1>Title: </h1>
-                  {{ movie.title }}
-                  {{ movie.name }}
-               </div>
-               <!-- titolo originale -->
-               <div>
-                  <h1>Original title:</h1>
-                  {{ movie.original_title }}
-                  {{ movie.original_name }}
+               <!-- titolo -->
+                  <div class="info">
+                     <h1>Title: </h1>
+                     {{ movie.title }}
+                     {{ movie.name }}
+                  </div>
 
-               </div>
-               <!-- overview -->
-               <div>
-                  <h1>Overview: </h1>
-                  <p>{{ movie.overview }}</p>
-               </div>
+                  <!-- titolo originale -->
+                  <div class="info">
+                     <h1>Original title:</h1>
+                     {{ movie.original_title }}
+                     {{ movie.original_name }}
+                  </div>
 
+                  <!-- linguaggio originale -->
+                  <div class="info">
+                     <h1>Language: </h1>
+                        <!-- creo dinamicamente l'src per le flags -->
+                        <img class="flags" :src="'img/' + movie.original_language + '.svg'" onerror="this.src='img/flag-error.png'">
+                        <span>
+                           ({{ movie.original_language }}-{{movie.upperLanguage}})
+                        </span>
+                   </div>
 
+                  <!-- voto -->
+                  <div class="info">
+                     <h1>Vote: </h1>
+                     <i class="fas fa-star" v-for="star in movie.stars"></i>
+                  </div>
 
+                  <!-- overview -->
+                  <div class="info">
+                     <h1>Overview: </h1>
+                     <p>{{ movie.overview }}</p>
+                  </div>
 
-               <!-- linguaggio originale -->
-               <div>
-                  <h1>Language: </h1>
-                     <!-- creo dinamicamente l'src per le flags -->
-                     <img class="flags" :src="'img/'+movie.original_language+'.svg'">
-                     <span>({{ movie.original_language }}-{{movie.upperLanguage}})</span>
-                </div>
+               <img class="background-box" :src="'https://image.tmdb.org/t/p/' + 'w342' + movie.poster_path" v-if="movie.poster_path !== null ">
 
-
-
-               <!-- voto -->
-               <div>
-                  <h1>Vote: </h1>
-                  <i class="fas fa-star" v-for="star in movie.stars"></i>
-               </div>
+               <img class="background-box" src="img/error2.jpg" v-else>
 
             </div>
-
-
          </main>
          <!-- movies/tv container -->
 
-
-
-
-
-
-
-
-
-
-
-
-
       </div>
-
-
-
-
-
 
       <!-- link js -->
       <script type="text/javascript" src="js/script.js"></script>
