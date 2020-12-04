@@ -1,11 +1,13 @@
 var app = new Vue({
    el: "#app",
    data: {
-      show: true,
+      items:["Home", "Serie TV", "Film", "La mia lista"],
+
       movies: [],
       research: ""
    },
    mounted: function() {
+
       // risultati che appaiono appena aperto il sito
       axios.get("https://api.themoviedb.org/3/search/movie?api_key=632b3a13e5a3fa9d76198ee6af3fe116&query=Pink Floyd")
       .then(risposta => {
@@ -31,7 +33,7 @@ var app = new Vue({
    },
 
    methods: {
-     search: function () {
+      search: function () {
       // CHIAMATA MOVIES
       axios.get("https://api.themoviedb.org/3/search/movie?api_key=632b3a13e5a3fa9d76198ee6af3fe116&query=" + this.research)
        .then(risposta => {
@@ -79,6 +81,11 @@ var app = new Vue({
 
           }
       });
-      }
+   },
+
+      
+
+
+
    }
 });

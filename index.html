@@ -20,12 +20,9 @@
             <div id="nav-left">
                <h1 id="logo">BOOLFLIX</h1>
                <ul id="ul-nav">
-                  <li>Home</li>
-                  <li>Serie TV</li>
-                  <li>Film</li>
-                  <li>Originali</li>
-                  <li>Aggiunti di recente</li>
-                  <li>La mia lista</li>
+
+                  <li v-for="item in items" > {{item}}</li>
+
                </ul>
             </div>
 
@@ -57,7 +54,7 @@
                   <div class="info">
                      <h1>Language: </h1>
                         <!-- creo dinamicamente l'src per le flags -->
-                        <img class="flags" :src="'img/' + movie.original_language + '.svg'" onerror="this.src='img/flag-error.png'">
+                        <img class="flags" :src="'img/' + movie.original_language + '.svg'" onerror="this.src='img/flag-error.png'" >
                         <span>
                            ({{ movie.original_language }}-{{movie.upperLanguage}})
                         </span>
@@ -75,9 +72,10 @@
                      <p>{{ movie.overview }}</p>
                   </div>
 
-               <img class="background-box" :src="'https://image.tmdb.org/t/p/' + 'w342' + movie.poster_path" v-if="movie.poster_path !== null ">
+                  <!-- copertine -->
+                  <img class="background-box" :src="'https://image.tmdb.org/t/p/' + 'w342' + movie.poster_path" v-if="movie.poster_path !== null " >
 
-               <img class="background-box" src="img/error2.jpg" v-else>
+                  <img class="background-box" src="img/error2.jpg" v-else>
 
             </div>
          </main>
