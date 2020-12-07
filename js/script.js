@@ -1,10 +1,13 @@
 var app = new Vue({
    el: "#app",
    data: {
-      items:["Home", "Serie TV", "Film", "La mia lista"],
-
+      isHidden: true,
+      opacity: "opacity",
+      noOpacity: "noOpacity",
+      infoActive: 0,
+      filmSel: {id:""},
       movies: [],
-      research: ""
+      research: "",
    },
    mounted: function() {
 
@@ -13,7 +16,7 @@ var app = new Vue({
       .then(risposta => {
 
          this.movies = risposta.data.results;
-         for (var i = 0; i < this.movies.length; i++) {
+         for (let i = 0; i < this.movies.length; i++) {
 
             // arrotondamento voto
             let votoDiviso = (this.movies[i].vote_average / 2);
@@ -26,7 +29,6 @@ var app = new Vue({
             let upperLanguage = lowerLanguage.toUpperCase(lowerLanguage);
 
             this.movies[i].upperLanguage = upperLanguage;
-
           }
       });
 
@@ -41,7 +43,7 @@ var app = new Vue({
          // centralizzazione array results nel mio "movies"
          this.movies = risposta.data.results;
 
-         for (var i = 0; i < this.movies.length; i++) {
+         for (let i = 0; i < this.movies.length; i++) {
 
             // arrotondamento voto
             let votoDiviso = (this.movies[i].vote_average / 2);
@@ -54,7 +56,6 @@ var app = new Vue({
             let upperLanguage = lowerLanguage.toUpperCase(lowerLanguage);
 
             this.movies[i].upperLanguage = upperLanguage;
-
           }
       });
 
@@ -65,7 +66,7 @@ var app = new Vue({
          // centralizzazione array results nel mio "movies"
          this.movies = risposta.data.results;
 
-         for (var i = 0; i < this.movies.length; i++) {
+         for (let i = 0; i < this.movies.length; i++) {
 
             // arrotondamento voto
             let votoDiviso = (this.movies[i].vote_average / 2);
@@ -79,11 +80,14 @@ var app = new Vue({
 
             this.movies[i].upperLanguage = upperLanguage;
 
+
+
           }
       });
    },
-
-      
+   infoChange: function(index) {
+     this.infoActive = index;
+   }
 
 
 

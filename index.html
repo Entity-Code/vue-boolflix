@@ -12,7 +12,7 @@
    <body>
 
       <!-- istanza vue -->
-      <div id="app">
+      <div id="app" >
 
          <!-- nav -->
          <header>
@@ -21,21 +21,29 @@
                <h1 id="logo">BOOLFLIX</h1>
                <ul id="ul-nav">
 
-                  <li v-for="item in items" > {{item}}</li>
+                  <li> Home </li>
+                  <li > Serie TV </li>
+                  <li> Film </li>
+                  <li> La mia lista </li>
 
                </ul>
             </div>
 
             <!-- right search-bar FILTRAGGIO-->
-            <input id="search-bar" v-on:keydown.13="search" v-model="research">
+            <input id="search-bar" v-on:keydown.13="search" v-model="research" placeholder="Cerca">
 
          </header>
          <!-- nav -->
 
-         <!-- movies/tv container -->
-         <main id="container-boxes">
+         <!-- msg -->
+         <h2>
+            Benvenuto in Boolflix! Film e Serie TV dove e quando vuoi ! <br> Cerca pure il tuo titolo preferito :)
+         </h2>
 
-            <div class="box" v-for="movie in movies">
+         <!-- movies/tv container -->
+         <main id="container-boxes" :class="isHidden == false ? opacity : noOpacity">
+
+            <div class="box" v-for="(movie, index) in movies" v-on:click="isHidden = false" @click="infoChange(index)">
                <!-- titolo -->
                   <div class="info">
                      <h1>Title: </h1>
@@ -63,13 +71,18 @@
                   <!-- voto -->
                   <div class="info">
                      <h1>Vote: </h1>
-                     <i class="fas fa-star" v-for="star in movie.stars"></i>
+                     <span v-for="(vote,i) in 5"><i class="fa-star" :class="i <= movie.stars ? 'fas' : 'far'"></i></span>
                   </div>
 
                   <!-- overview -->
-                  <div class="info">
+                  <div class="info" v-if=' movie.overview == "" '>
+                     <h1>Overview: NOT AVAILABLE</h1>
+                     <p></p>
+                  </div>
+                  <div class="info" v-else>
                      <h1>Overview: </h1>
                      <p>{{ movie.overview }}</p>
+                     <div class="break"></div>
                   </div>
 
                   <!-- copertine -->
@@ -78,8 +91,72 @@
                   <img class="background-box" src="img/error2.jpg" v-else>
 
             </div>
+
+
+
          </main>
          <!-- movies/tv container -->
+
+         <!-- al click della box (box selezionata)-->
+         <div class="infoClick" v-if="!isHidden" v-for="(movie, index) in movies[infoActive]">
+
+            <!-- close info -->
+            <span class="closeInfo"><i class="fas fa-times" v-on:click="isHidden = true"></i></span>
+
+
+            <!-- copertine -->
+            <img class="background-click" :src="'https://image.tmdb.org/t/p/' + 'w342' + movies[infoActive].poster_path" v-if="movies[infoActive].poster_path !== null " >
+            <img class="background-click" src="img/error2.jpg" v-else>
+
+
+            <div class="right-click">
+               <!-- titolo -->
+                  <div class="info">
+                     <h1>Title: </h1>
+                     {{ movies[infoActive].title }}
+                     {{ movies[infoActive].name }}
+                  </div>
+
+                  <!-- titolo originale -->
+                  <div class="info">
+                     <h1>Original title:</h1>
+                     {{ movies[infoActive].original_title }}
+                     {{ movies[infoActive].original_name }}
+                  </div>
+
+                  <!-- linguaggio originale -->
+                  <div class="info">
+                     <h1>Language: </h1>
+                        <!-- creo dinamicamente l'src per le flags -->
+                        <img class="flags" :src="'img/' + movies[infoActive].original_language + '.svg'" onerror="this.src='img/flag-error.png'" >
+                        <span>
+                           ({{ movies[infoActive].original_language }}-{{movies[infoActive].upperLanguage}})
+                        </span>
+                   </div>
+
+                   <!-- voto -->
+                  <div class="info">
+                     <h1>Vote: </h1>
+                     <span v-for="(vote,i) in 5"><i class="fa-star" :class="i <= movies[infoActive].stars ? 'fas' : 'far'"></i></span>
+                  </div>
+
+
+                  <!-- overview -->
+                  <div class="info" v-if=' movies[infoActive].overview == "" '>
+                     <h1>Overview: </h1>
+                     <p class="notAv">NOT AVAILABLE</p>
+                  </div>
+                  <div class="info" v-else>
+                     <h1>Overview: </h1>
+                     <p>{{ movies[infoActive].overview }}</p>
+                  </div>
+
+
+
+            </div>
+
+
+         </div>
 
       </div>
 
