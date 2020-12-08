@@ -1,11 +1,20 @@
 var app = new Vue({
    el: "#app",
    data: {
+      // display
       isHidden: true,
       opacity: "opacity",
       noOpacity: "noOpacity",
+
       infoActive: 0,
-      filmSel: {id:""},
+      // cast
+      idCast: "",
+      castNames: [],
+
+      // generi
+      genres: [],
+      genreNames: [],
+
       movies: [],
       research: "",
    },
@@ -29,6 +38,18 @@ var app = new Vue({
             let upperLanguage = lowerLanguage.toUpperCase(lowerLanguage);
 
             this.movies[i].upperLanguage = upperLanguage;
+
+            // cast
+            this.idCast = this.movies[i].id
+
+            // genre
+            // console.log(this.movies[i].genre_ids);
+            // this.genres= this.movies[i].genre_ids
+            //
+            // console.log(this.genres);
+            //
+            // console.log(this.idCast);
+
           }
       });
 
@@ -56,8 +77,21 @@ var app = new Vue({
             let upperLanguage = lowerLanguage.toUpperCase(lowerLanguage);
 
             this.movies[i].upperLanguage = upperLanguage;
+
+            // cast
+            this.idCast = this.movies[i].id
+            // console.log(this.idCast);
+
+            // genre
+            // console.log(this.movies[i].genre_ids);
+            // this.genres= this.movies[i].genre_ids
+            //
+            // console.log(this.genres);
           }
       });
+
+
+
 
       // CHIAMATA SERIE TV
       axios.get("https://api.themoviedb.org/3/search/tv?api_key=632b3a13e5a3fa9d76198ee6af3fe116&language=it_IT&query=" + this.research)
@@ -80,14 +114,41 @@ var app = new Vue({
 
             this.movies[i].upperLanguage = upperLanguage;
 
+            this.idCast = this.movies[i].id
+
+            // console.log(this.idCast);
+
+            // genre
+            // console.log(this.movies[i].genre_ids);
+            // this.genres= this.movies[i].genre_ids
+            //
+            // console.log(this.genres);
+            }
+         });
+      },
+
+      infoChange: function(index) {
+         this.infoActive = index;
+
+         // cast serie tv
+         axios.get("https://api.themoviedb.org/3/tv/" + this.idCast + "/aggregate_credits?api_key=632b3a13e5a3fa9d76198ee6af3fe116")
+         .then(risposta => {this.castNames = risposta.data.cast;});
 
 
-          }
-      });
-   },
-   infoChange: function(index) {
-     this.infoActive = index;
-   }
+         // generi movies
+         axios.get("https://api.themoviedb.org/3/movie/" + this.idCast + "?api_key=632b3a13e5a3fa9d76198ee6af3fe116")
+         .then(risposta => {
+
+            this.genreNames = risposta.data.genres
+            console.log(this.genreNames);
+
+            for (var i = 0; i < this.genreNames.length; i++) {
+               console.log(this.genreNames[i].name);
+            }
+
+            // this.castNames = risposta.data.cast;
+         });
+      }
 
 
 

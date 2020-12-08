@@ -43,7 +43,7 @@
          <!-- movies/tv container -->
          <main id="container-boxes" :class="isHidden == false ? opacity : noOpacity">
 
-            <div class="box" v-for="(movie, index) in movies" v-on:click="isHidden = false" @click="infoChange(index)">
+            <div class="box" v-for="(movie, index) in movies" v-on:click="isHidden = false" @click="infoChange(index)" @click="genCast">
                <!-- titolo -->
                   <div class="info">
                      <h1>Title: </h1>
@@ -134,11 +134,37 @@
                         </span>
                    </div>
 
+
+
+                  <!-- genere -->
+                  <div class="info cast-genre">
+                     <h1>Genre: </h1>
+                     <span v-for="genre in genreNames">{{ genre.name }}</span>
+                  </div>
+
+
+                   <!-- cast -->
+                  <div class="info cast-genre" v-if="castNames.length !== 0">
+                     <h1>Cast: </h1>
+                     <span v-for="castName in castNames.slice(0, 5)">{{ castName.name }}</span>
+                  </div>
+
+                  <div class="info cast-genre" v-else>
+                     <h1>Cast: </h1>
+                     <span> NOT AVAILABLE </span>
+                  </div>
+
+
+
+
+
+
                    <!-- voto -->
                   <div class="info">
                      <h1>Vote: </h1>
                      <span v-for="(vote,i) in 5"><i class="fa-star" :class="i <= movies[infoActive].stars ? 'fas' : 'far'"></i></span>
                   </div>
+
 
 
                   <!-- overview -->

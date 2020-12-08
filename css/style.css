@@ -159,7 +159,11 @@ i{color: yellow;}
    font-size: 17.5px;
    overflow-y: auto;
 }
-
+/* cast-genre */
+.cast-genre > span{
+   padding: 0 5px;
+}
+/* cast-genre */
 /* img click */
 .background-click{
    width: 35%;
