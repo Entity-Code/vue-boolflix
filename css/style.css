@@ -14,10 +14,15 @@ body{
 /* nav HEADER */
    header{
       height: 50px;
+      width: 100%;
       background-color: black;
       display: flex;
       flex-flow: nowrap row;
       justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99;
    }
       #nav-left{
          display: flex;
@@ -54,6 +59,7 @@ body{
 h2{
    text-align: center;
    margin: 25px 50px;
+   margin-top: 90px;
 }
 
 /* movies/tv container */
@@ -199,6 +205,72 @@ i{color: yellow;}
 
 
 
+   @media screen and (max-width: 650px) {
+     #ul-nav{display: none;}
+   }
+   @media screen and (max-width: 420px) {
+      header{
+         flex-flow:
+         nowrap column;
+         height: auto;
+         width: 100%;
+         padding: 5px;
+         position: fixed;
+         top:0;
+         left: 0;
+         z-index: 99;
+      }
+     #nav-left{display: block;}
+     #logo{margin: 0; text-align: center;}
+     #search-bar{margin: 0; padding: 5px; margin: 5px; border-radius: 10px;}
+     h2{margin-top: 110px; font-size:20px;}
+   }
+
+
+   @media screen and (max-width: 630px) {
+
+      .infoClick .info p{
+        height: 150px;
+        overflow: auto;
+      }
+   }
+   @media screen and (max-width: 420px) {
+      header{
+         height: 16%;
+      }
+     #ul-nav{display: none;}
+     .infoClick{
+        position: normal;
+        margin-top: 40px;
+        width: 100vw;
+        height: calc(100% - 16%);
+        overflow: auto;
+     }
+     #search-bar{height: 25px;}
+     .infoClick .info p{
+        height: auto;
+        margin-bottom: 25px;
+        position: fixed;
+        bottom: 10px;
+        left: 0;
+     }
+     .right-click{
+        overflow: auto;
+     }
+   }
+
+   @media screen and (max-width: 800px) {
+     .right-click {
+        width: 100%;
+     }
+     .background-click{
+        display: none;
+     }
+   }
+
+   @media screen and (max-height: 450px) {
+      #logo{display: none;}
+   }
 
 
 
