@@ -21,7 +21,7 @@ var app = new Vue({
    mounted: function() {
 
       // risultati che appaiono appena aperto il sito
-      axios.get("https://api.themoviedb.org/3/search/movie?api_key=632b3a13e5a3fa9d76198ee6af3fe116&query=Pink Floyd")
+      axios.get("https://api.themoviedb.org/3/search/movie?api_key=632b3a13e5a3fa9d76198ee6af3fe116&query=Shingeki no kyojin")
       .then(risposta => {
 
          this.movies = risposta.data.results;

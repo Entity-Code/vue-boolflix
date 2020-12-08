@@ -137,9 +137,14 @@
 
 
                   <!-- genere -->
-                  <div class="info cast-genre">
+                  <div class="info cast-genre" v-if="genreNames.length !== 0">
                      <h1>Genre: </h1>
                      <span v-for="genre in genreNames">{{ genre.name }}</span>
+                  </div>
+
+                  <div class="info cast-genre" v-else>
+                     <h1>Genre: </h1>
+                     <span>NOT AVAILABLE</span>
                   </div>
 
 
@@ -150,7 +155,7 @@
                   </div>
 
                   <div class="info cast-genre" v-else>
-                     <h1>Cast: </h1>
+                     <h1>Main cast: </h1>
                      <span> NOT AVAILABLE </span>
                   </div>
 
